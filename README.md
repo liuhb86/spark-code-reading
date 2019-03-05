@@ -1,0 +1,33 @@
+# Spark Source code reading (draft)
+## Table of contents
+1. [Preface](preface.md)
+2. Core Spark Workflow
+   * [How are DataFrames converted to RDD?](workflow/df2rdd.md) (Draft)
+   * How are RDDs converted to Job? (Draft in Word)
+   * How are jobs and stages scheduled? (Draft in Word)
+   * How are tasks scheduled? (Draft in Word)
+   * How does executor execute tasks? (Draft in Word)
+   * How are the results sent back to the application? (Draft in Word)
+3. Standalone Cluster
+   * How does master manage worker & executor? (TODO)
+   * How does driver programs communicate with master? (TODO) 
+   * How does master communicate with worker? (TODO)
+4. Important Internal Infrastructure
+   * What does BlockManager do? (TODO)
+   * How shuffle works between stages? (TODO)
+   * What is inside the cache? (TODO)
+   * How are the caches managed? (TODO)
+   * How does the recovery work? (TODO)
+   * How does broadcast work? (TODO)
+   * How does accumulator work? (TODO)
+   * How is the object serialized? (TODO)
+   * RPC (TODO, draft)
+5. Pefromance Optimization
+   * How does Spark respect locality? (TODO)
+   * What are the physical plan and logical plan? (TODO)
+   * What does the query optimizer do? (TODO)
+   * How does code generation work? (TODO)
+   * How does speculative task work? (TODO)
+   * How does out-heap memory work?(TODO)
+6. Streaming/Machine Learning (not planned)
+7. Appendix A Minor concepts (Draft in Word, TODO)
