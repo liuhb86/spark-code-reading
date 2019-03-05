@@ -1,9 +1,9 @@
 # Spark Source code reading (draft)
 ## Table of contents
-1. [Preface](preface.md)
+1. [Preface](preface.md) (draft)
 2. Core Spark Workflow
-   * [How are DataFrames converted to RDD?](workflow/df2rdd.md) (Draft)
-   * How are RDDs converted to Job? (Draft in Word)
+   * [How are DataFrames converted to RDD?](workflow/df2rdd.md) (draft)
+   * [How are RDDs converted to Job?](workflow/rdd2job.md) (draft)
    * How are jobs and stages scheduled? (Draft in Word)
    * How are tasks scheduled? (Draft in Word)
    * How does executor execute tasks? (Draft in Word)
