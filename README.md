@@ -1,11 +1,11 @@
 # Spark Source code reading (draft)
 ## Table of contents
-1. [Preface](preface.md) (draft)
+1. [Preface](preface.md)
 2. Core Spark Workflow
-   * [How are DataFrames converted to RDD?](workflow/df2rdd.md) (draft)
-   * [How are RDDs converted to Job?](workflow/rdd2job.md) (draft)
-   * How are jobs and stages scheduled? (Draft in Word)
-   * How are tasks scheduled? (Draft in Word)
+   * [How are DataFrames converted to RDD?](workflow/df2rdd.md)
+   * [How are RDDs converted to Job?](workflow/rdd2job.md)
+   * [How are jobs and stages scheduled?](workflow/job_schedule.md)
+   * [How are tasks scheduled?](workflow/task_schedule.md)
    * How does executor execute tasks? (Draft in Word)
    * How are the results sent back to the application? (Draft in Word)
 3. Standalone Cluster
@@ -21,7 +21,8 @@
    * How does broadcast work? (TODO)
    * How does accumulator work? (TODO)
    * How is the object serialized? (TODO)
-   * RPC (TODO, draft)
+   * [RPC](infrastructure/rpc.md)
+   * [Task Pool](infrastructure/pool.md)
 5. Pefromance Optimization
    * How does Spark respect locality? (TODO)
    * What are the physical plan and logical plan? (TODO)
@@ -30,4 +31,4 @@
    * How does speculative task work? (TODO)
    * How does out-heap memory work?(TODO)
 6. Streaming/Machine Learning (not planned)
-7. Appendix A Minor concepts (Draft in Word, TODO)
+7. [Appendix A Minor concepts](appendix/minor_concepts.md)
