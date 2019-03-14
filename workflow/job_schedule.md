@@ -14,4 +14,10 @@ If missing stages are found, the missing stages are submitted recursively. And t
 
 If there are no missing stages, submitMissingTask is called to running the tasks inside the stage, and the stage will be put into the running set.
 
-TODO: follow up
+After the tasks are completed, it will check if all the tasks in that stage are completed. If so, the next step depends on the type of the stage.
+
+If it's a ShuffleStage, the pending child stages will be resumbitted and the workflow above will repeat;
+
+If it's a ResultStage, the result will be send back.
+
+See the result handling session and `DAGScheduler.taskEnded/handleTaskCompletion` for more detail.
