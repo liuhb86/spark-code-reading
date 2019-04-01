@@ -9,7 +9,7 @@
    * [How does executor execute tasks?](workflow/task_execution.md)
    * [How are the results sent back to the application?](workflow/result.md)
 3. Standalone Cluster
-   * How does master manage worker & executor? (TODO)
+   * How does master manage worker & executor? (in progress)
    * How does driver programs communicate with master? (TODO) 
    * How does master communicate with worker? (TODO)
 4. Important Internal Infrastructure
