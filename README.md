@@ -7,7 +7,7 @@
    * [How are jobs and stages scheduled?](workflow/job_schedule.md)
    * [How are tasks scheduled?](workflow/task_schedule.md)
    * [How does executor execute tasks?](workflow/task_execution.md)
-   * How are the results sent back to the application? (Draft in Word)
+   * [How are the results sent back to the application?](workflow/result.md)
 3. Standalone Cluster
    * How does master manage worker & executor? (TODO)
    * How does driver programs communicate with master? (TODO) 
