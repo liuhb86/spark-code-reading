@@ -23,3 +23,6 @@ Holds all the runtime environment objects for a running Spark instance (either m
 ```
 BlacklistTracker is designed to track problematic executors and nodes.  It supports blacklisting executors and nodes across an entire application (with a periodic expiry).  TaskSetManagers add additional blacklisting of executors and nodes for individual tasks and stages which works in concert with the blacklisting here. 
 ```
+
+## EventLog
+For persisting and reviewing the spark information after application is ended. See https://spark.apache.org/docs/latest/monitoring.html
