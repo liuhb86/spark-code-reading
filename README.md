@@ -9,9 +9,9 @@
    * [How does executor execute tasks?](workflow/task_execution.md)
    * [How are the results sent back to the application?](workflow/result.md)
 3. Standalone Cluster
-   * How does master manage worker & executor? (in progress)
-   * How does driver programs communicate with master? (TODO) 
+   * [How does driver programs communicate with master?](cluster/driver_master.md)
    * How does master communicate with worker? (TODO)
+   * How does driver communicate with the executors? (TODO)
 4. Important Internal Infrastructure
    * What does BlockManager do? (TODO)
    * How shuffle works between stages? (TODO)

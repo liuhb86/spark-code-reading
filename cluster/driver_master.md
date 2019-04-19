@@ -1,4 +1,4 @@
-How does driver programs communicate with the master (cluster manager)?
+# How does driver programs communicate with the master (cluster manager)?
 
 First, notice the following section from Spark doc:
 https://spark.apache.org/docs/latest/cluster-overview.html
@@ -37,3 +37,30 @@ In StandaloneSchedulerBackend.start(), it construct an **ApplicationDescription*
 * coresPerExecutor: The number of cores to use on each executor. `spark.executor.cores`. See [Executors Scheduling](https://spark.apache.org/docs/latest/spark-standalone.html#executors-scheduling) and [Task Scheduling](../workflow/task_schedule.md)
 * initialExecutorLimit: number of executors this application wants to start with, only used if dynamic allocation is enabled
 * user: from System Property `user.name`. Default is "\<unknown\>".
+
+Then, A **StandaloneAppClient** is created with the `ApplicationDescription` and the master URLs. It mains register an RPC endpoint **ClientEndpoint** and talk to the master with it. The `ClientEndpoint.registerWithMaster()` is called in the `ClientEndpont.onStart()` to initiate the communication with the cluster master. To support high avaliability(HA), it will try to register with all masters and choose only one to communicate. It also has retry logic. But mainly, it just send a `RegisterApplication` with the `ApplicationDescription` to the master.
+
+The **master**(`deply/master/Master.scala`) will register the application and start executors for the application. How the executor allocates the executors for the appplication is an important part and we will have a separte section below. After it's done. the master will reply to the application with message `RegisteredApplication` and the newly created application ID.
+
+## Executor allocation
+An application can run in Spark cluster in two mode: cluster mode and client mode. In cluster mode, the driver program is submitted and run in the cluster; in client mode, the driver runs separated in a client machine. 
+
+`Master.schedule()` mainly allocate resource to driver programs submitted in cluster mode in a round robin manner. We will not focus on this part. 
+
+The executor allocation happens in `Master.startExecutorsOnWorkers()` and `Master.scheduleExecutorsOnWorkers()`. **Notice it allocates the exectuors in FIFO manner.** So the first application will get more resouces. It seems it won't work well when there are many long-running applications under default settings, which allows an apllication to take infinite cores.
+
+Basically, it just to satisfy all the need for the first application, then the second, and so on. 
+
+There's also a configuration: `spark.deploy.spreadOut` default to true. When it's on, it will allocate the executor to the nodes in a round robin manner. It allocates one executor to one node, and then allocates another to a second node and so on; when it's false, it allocate as many executors to the first nodes and the continue with the second node. Comments in code 
+`
+ // As a temporary workaround before better ways of configuring memory, we allow users to set
+  // a flag that will perform round-robin scheduling across the nodes (spreading out each app
+  // among all the nodes) instead of trying to consolidate each app onto a small # of nodes.
+`
+
+Also notice one special logic: if coresPerExecutor(`spark.executor.cores`) is not set(the default), it will start one executor on the node and takes all the remaining cores of it; otherwise, it can launch multiple executors on one node, each with specified cores.
+
+After the executors are allocated, it will launch the executors on the worker nodes. We will cover it in next section.
+
+
+
