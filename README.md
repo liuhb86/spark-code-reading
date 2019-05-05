@@ -13,7 +13,7 @@
    * How does master communicate with worker? (TODO)
    * How does driver communicate with the executors? (TODO)
 4. Important Internal Infrastructure
-   * What does BlockManager do? (TODO)
+   * [What does BlockManager do?](infrastructure/blockmanager.md)
    * How shuffle works between stages? (TODO)
    * What is inside the cache? (TODO)
    * How are the caches managed? (TODO)
